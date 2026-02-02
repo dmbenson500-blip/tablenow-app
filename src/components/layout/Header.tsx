@@ -24,7 +24,7 @@ const Header = () => {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-1 transition-opacity hover:opacity-80">
-          <img src={logo} alt="TableNow!" className="h-10 w-auto" />
+          <img src={logo} alt="TableNow!" className="h-14 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
