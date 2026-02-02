@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Search, Heart, User, Utensils } from "lucide-react";
+import { Menu, X, Search, Heart, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useApp } from "@/context/AppContext";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/TableNow_Logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,11 +23,8 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-            <Utensils className="h-5 w-5 text-primary-foreground" />
-          </div>
-          <span className="text-xl font-bold text-brown">TableNow</span>
+        <Link to="/" className="flex items-center gap-1 transition-opacity hover:opacity-80">
+          <img src={logo} alt="TableNow!" className="h-10 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
