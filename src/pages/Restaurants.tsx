@@ -13,7 +13,12 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { useApp } from "@/context/AppContext";
 import { cn } from "@/lib/utils";
 
-const cuisineTypes = ["Italian", "Japanese", "Mexican", "American", "Chinese", "Mediterranean", "Indian", "French", "Vegetarian"];
+const cuisineTypes = [
+  "American", "BBQ", "Brazilian", "Brunch", "Cafe", "Caribbean", "Chinese", 
+  "Ethiopian", "French", "Fusion", "Greek", "Indian", "Italian", "Japanese", 
+  "Korean", "Lebanese", "Mediterranean", "Mexican", "Peruvian", "Pizza", 
+  "Seafood", "Spanish", "Steakhouse", "Thai", "Turkish", "Vegetarian", "Vietnamese"
+];
 const priceRanges = ["$", "$$", "$$$", "$$$$"];
 const dietaryOptions = ["Vegetarian", "Vegan", "Gluten-Free"];
 
