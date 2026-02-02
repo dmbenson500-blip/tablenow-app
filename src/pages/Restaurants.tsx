@@ -14,10 +14,14 @@ import { useApp } from "@/context/AppContext";
 import { cn } from "@/lib/utils";
 
 const cuisineTypes = [
-  "American", "BBQ", "Brazilian", "Brunch", "Cafe", "Caribbean", "Chinese", 
-  "Ethiopian", "French", "Fusion", "Greek", "Indian", "Italian", "Japanese", 
-  "Korean", "Lebanese", "Mediterranean", "Mexican", "Peruvian", "Pizza", 
-  "Seafood", "Spanish", "Steakhouse", "Thai", "Turkish", "Vegetarian", "Vietnamese"
+  "American", "Argentinian", "BBQ", "Brazilian", "British", "Brunch", "Burger", "Cafe", 
+  "Cajun", "Caribbean", "Chinese", "Cuban", "Deli", "Dessert", "Dim Sum", "Ethiopian", 
+  "Filipino", "French", "Fusion", "Gastropub", "German", "Greek", "Hawaiian", "Indian", 
+  "Indonesian", "Irish", "Israeli", "Italian", "Japanese", "Korean", "Lebanese", "Malaysian", 
+  "Mediterranean", "Mexican", "Moroccan", "Nepalese", "Noodles", "Pakistani", "Peruvian", 
+  "Pizza", "Poke", "Polish", "Portuguese", "Ramen", "Russian", "Salad", "Sandwich", "Seafood", 
+  "Soup", "Spanish", "Steakhouse", "Sushi", "Taco", "Thai", "Tibetan", "Turkish", 
+  "Vegetarian", "Vietnamese", "Wine Bar", "Wings"
 ];
 const priceRanges = ["$", "$$", "$$$", "$$$$"];
 const dietaryOptions = ["Vegetarian", "Vegan", "Gluten-Free"];
