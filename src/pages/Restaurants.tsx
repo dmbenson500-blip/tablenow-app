@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Search, SlidersHorizontal, X, Grid3X3, List } from "lucide-react";
+import { Search, SlidersHorizontal, X, Grid3X3, List, ChevronLeft, ChevronRight } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import RestaurantCard from "@/components/restaurant/RestaurantCard";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useApp } from "@/context/AppContext";
 import { cn } from "@/lib/utils";
+
+const ITEMS_PER_PAGE = 12;
 
 const cuisineTypes = [
   "American", "Argentinian", "BBQ", "Brazilian", "British", "Brunch", "Burger", "Cafe", 
@@ -38,6 +40,7 @@ const Restaurants = () => {
   const [sortBy, setSortBy] = useState("rating");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredRestaurants = useMemo(() => {
     let filtered = [...restaurants];
@@ -95,6 +98,18 @@ const Restaurants = () => {
 
     return filtered;
   }, [restaurants, searchQuery, selectedCuisines, selectedPrice, selectedDietary, sortBy]);
+
+  // Pagination
+  const totalPages = Math.ceil(filteredRestaurants.length / ITEMS_PER_PAGE);
+  const paginatedRestaurants = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredRestaurants.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredRestaurants, currentPage]);
+
+  // Reset to page 1 when filters change
+  useMemo(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedCuisines, selectedPrice, selectedDietary, sortBy]);
 
   const toggleCuisine = (cuisine: string) => {
     setSelectedCuisines((prev) =>
@@ -299,28 +314,81 @@ const Restaurants = () => {
             </div>
 
             {/* Results */}
-            {filteredRestaurants.length > 0 ? (
-              <div
-                className={cn(
-                  "grid gap-6",
-                  viewMode === "grid"
-                    ? "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
-                    : "grid-cols-1"
-                )}
-              >
-                {filteredRestaurants.map((restaurant, index) => (
-                  <div
-                    key={restaurant.id}
-                    className="animate-fade-in"
-                    style={{ animationDelay: `${index * 50}ms` }}
-                  >
-                    <RestaurantCard
-                      restaurant={restaurant}
-                      variant={viewMode === "list" ? "compact" : "default"}
-                    />
+            {paginatedRestaurants.length > 0 ? (
+              <>
+                <div
+                  className={cn(
+                    "grid gap-6",
+                    viewMode === "grid"
+                      ? "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
+                      : "grid-cols-1"
+                  )}
+                >
+                  {paginatedRestaurants.map((restaurant, index) => (
+                    <div
+                      key={restaurant.id}
+                      className="animate-fade-in"
+                      style={{ animationDelay: `${index * 50}ms` }}
+                    >
+                      <RestaurantCard
+                        restaurant={restaurant}
+                        variant={viewMode === "list" ? "compact" : "default"}
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="mt-8 flex items-center justify-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </Button>
+                    
+                    {Array.from({ length: totalPages }, (_, i) => i + 1)
+                      .filter((page) => {
+                        // Show first, last, current, and pages around current
+                        return (
+                          page === 1 ||
+                          page === totalPages ||
+                          Math.abs(page - currentPage) <= 1
+                        );
+                      })
+                      .map((page, index, arr) => (
+                        <span key={page} className="flex items-center">
+                          {index > 0 && arr[index - 1] !== page - 1 && (
+                            <span className="px-2 text-muted-foreground">...</span>
+                          )}
+                          <Button
+                            variant={currentPage === page ? "default" : "outline"}
+                            size="icon"
+                            onClick={() => setCurrentPage(page)}
+                          >
+                            {page}
+                          </Button>
+                        </span>
+                      ))}
+                    
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
                   </div>
-                ))}
-              </div>
+                )}
+
+                <p className="mt-4 text-center text-sm text-muted-foreground">
+                  Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1}-{Math.min(currentPage * ITEMS_PER_PAGE, filteredRestaurants.length)} of {filteredRestaurants.length} restaurants
+                </p>
+              </>
             ) : (
               <div className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed py-16 text-center">
                 <Search className="mb-4 h-12 w-12 text-muted-foreground" />
