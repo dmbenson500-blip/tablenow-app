@@ -1,73 +1,205 @@
-# Welcome to your Lovable project
+## ✨ Features
 
-## Project info
+### Core Functionality
+- 🔍 **Restaurant Discovery** - Search, filter, and browse restaurants
+- 📅 **Reservation System** - Book, modify, and cancel reservations
+- ⭐ **Reviews & Ratings** - Post reviews and rate restaurants
+- ❤️ **Favorites** - Save favorite restaurants for quick access
+- 👤 **User Profiles** - Manage personal information and preferences
+- 📱 **Responsive Design** - Mobile, tablet, and desktop optimized
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+### Advanced Features
+- 🎲 **Surprise Me** - Random restaurant recommendations
+- 🗳️ **Group Polls** - Vote on restaurant choices with friends
+- 💰 **Split Bill Calculator** - Calculate bill splits with tips
+- ⏰ **Waitlist Management** - Join waitlists for fully booked slots
+- 🔔 **Notifications** - Booking confirmations and reminders (mocked)
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+| Technology | Purpose | Version |
+|-----------|---------|---------|
+| **React** | UI Framework | 18.x |
+| **TypeScript** | Type Safety | 5.x |
+| **Tailwind CSS** | Styling | 3.x |
+| **React Router** | Navigation | 6.x |
+| **Lucide React** | Icons | Latest |
+| **Vite** | Build Tool | 5.x |
+| **Vitest** | Unit Testing | Latest |
+| **Cypress** | E2E Testing | 13.x |
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+### Backend
+- **localStorage** - Client-side data persistence (simulates backend)
+- **Mock Data** - Pre-populated restaurants, users, and reservations
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 📦 Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Before you begin, ensure you have the following installed on your machine:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Required Software
 
-Follow these steps:
+1. **Node.js** (v18.x or higher)
+   - Download: https://nodejs.org/
+   - Verify installation: `node --version`
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. **npm** (v9.x or higher) or **yarn** (v1.22.x or higher)
+   - npm comes with Node.js
+   - Verify installation: `npm --version`
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+3. **Git** (v2.x or higher)
+   - Download: https://git-scm.com/
+   - Verify installation: `git --version`
 
-# Step 3: Install the necessary dependencies.
-npm i
+4. **Code Editor** (Recommended: Visual Studio Code)
+   - Download: https://code.visualstudio.com/
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Optional but Recommended
+
+- **React Developer Tools** - Browser extension for debugging
+- **Cypress** - Already included, but may need system dependencies (see below)
+
+---
+
+## 🚀 Installation
+
+Follow these steps to get TableNow running on your local machine:
+
+### Step 1: Clone the Repository
+
+```bash
+# Using HTTPS
+git clone https://github.com/YOUR-USERNAME/tablenow.git
+
+# OR using SSH
+git clone git@github.com:YOUR-USERNAME/tablenow.git
+
+# Navigate into the project directory
+cd tablenow
 ```
 
-**Edit a file directly in GitHub**
+### Step 2: Install Dependencies
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# Using npm
+npm install
 
-**Use GitHub Codespaces**
+# OR using yarn
+yarn install
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+This will install all required packages including:
+- React and React DOM
+- TypeScript and type definitions
+- Tailwind CSS and PostCSS
+- React Router
+- Lucide React icons
+- Development tools (Vite, Vitest, Cypress)
 
-## What technologies are used for this project?
+**Expected installation time:** 2-5 minutes depending on your internet connection.
 
-This project is built with:
+### Step 3: Verify Installation
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```bash
+# Check if all dependencies are installed
+npm list --depth=0
 
-## How can I deploy this project?
+# OR with yarn
+yarn list --depth=0
+```
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+You should see a list of installed packages without any errors.
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## 🏃 Running the Application
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Development Mode
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Start the development server with hot reload:
+
+```bash
+# Using npm
+npm run dev
+
+# OR using yarn
+yarn dev
+```
+
+**Expected output:**
+```
+  VITE v5.x.x  ready in XXX ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h to show help
+```
+
+Open your browser and navigate to **http://localhost:5173/**
+
+The application will automatically reload when you make changes to the source code.
+
+### Production Build
+
+Create an optimized production build:
+
+```bash
+# Build the application
+npm run build
+
+# Preview the production build
+npm run preview
+```
+
+The build output will be in the `dist/` directory.
+
+---
+
+## 📁 Project Structure
+
+```
+tablenow/
+├── public/                 # Static assets
+│   └── favicon.ico
+├── src/
+│   ├── components/        # React components
+│   │   ├── layout/       # Navigation, Footer, Layout
+│   │   ├── restaurant/   # Restaurant cards, details
+│   │   ├── booking/      # Booking flow components
+│   │   ├── ui/           # Reusable UI components
+│   │   └── ...
+│   ├── pages/            # Page components
+│   │   ├── Home.tsx
+│   │   ├── RestaurantList.tsx
+│   │   ├── RestaurantDetail.tsx
+│   │   ├── Booking.tsx
+│   │   ├── Reservations.tsx
+│   │   └── ...
+│   ├── contexts/         # React Context providers
+│   │   ├── AuthContext.tsx
+│   │   ├── ReservationContext.tsx
+│   │   └── FavoritesContext.tsx
+│   ├── hooks/            # Custom React hooks
+│   ├── utils/            # Utility functions
+│   ├── types/            # TypeScript type definitions
+│   ├── data/             # Mock data
+│   │   ├── restaurants.ts
+│   │   ├── users.ts
+│   │   └── reservations.ts
+│   ├── App.tsx           # Root component
+│   ├── main.tsx          # Entry point
+│   └── index.css         # Global styles
+├── cypress/              # E2E tests
+│   ├── e2e/
+│   ├── fixtures/
+│   └── support/
+├── tests/                # Unit tests
+├── .gitignore
+├── package.json
+├── tsconfig.json
+├── tailwind.config.js
+├── vite.config.ts
+└── README.md
